@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicios 4.1</title>
+</head>
+<body> 
+  <div class="container">
+    <form>
+      <input type="text" name="user" id="mensaje">
+    </form>
+    <button onclick="readForm()">Nuevo parrafo</button>
+  </div>
+
+  <p id="Ejercicio1"></p>
+  
+  <script> 
+    function readForm(){
+        var mensaje = document.getElementById("mensaje").value;
+        var ejercicio1 = document.getElementById("Ejercicio1");
+        ejercicio1.textContent= mensaje;
+    }
+
+  </script>
+</body>
+</html>
+ 

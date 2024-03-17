@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4.2</title>
+
+  <style>
+    .ocultar {
+      display: none;
+    }
+  </style>
+
+</head>
+<body>
+  <button id="boton" onclick="divControl()">Ocultar div</button> 
+  <div id="div1" style="padding: 10px; background-color: black;">
+    <p style="color: aqua; text-align: center;">div</p>
+  </div>
+  
+  <script> 
+    function divControl(){
+        var div = document.getElementById("div1");
+        var boton = document.getElementById("boton");
+
+        if(div.classList.contains("ocultar")){
+            div.classList.remove("ocultar");
+            boton.textContent = "Ocultar div";
+        }else{
+            div.classList.add("ocultar");
+            boton.textContent = "Mostrar div";
+        }
+    }
+  </script>
+</body>
+</html>
