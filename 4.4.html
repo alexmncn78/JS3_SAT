@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4.4</title>
+</head>
+<body>
+
+    <button id="button1" onclick="loadUsers1()">Cargar usuarios con XMLHttpRequest</button>
+    <button id="button2" onclick="loadUsers2()">Cargar usuarios con Fetch</button>
+    
+    <div id="users_list">
+
+    </div>
+
+    <script> 
+        //Funcion usando XMLHttpRequest
+        function loadUsers1(){
+            const conn = new XMLHttpRequest();
+            conn.open('GET', 'http://labtelema.ujaen.es:8083/user', true);
+
+            conn.onreadystatechange = function(){
+                console.log("sdfsdfgsdg");
+                if(conn.readyState === XMLHttpRequest.DONE){
+                    if(conn.status == 200){
+                        showUsers(JSON.parse(conn.responseText));
+                    }else {
+                        console.error("Error al cargar los usuarios 1");
+                    }
+                }
+            }
+            conn.send();
+        }
+        
+        //Funcion usando fetch
+        function loadUsers2(){
+            fetch('http://labtelema.ujaen.es:8083/user')
+                .then(response=> {
+                    if(!response.ok){
+                        throw new Error("Error al cargar los usuarios 2");
+                    }
+                    return response.json();
+                })
+                .then(data=> showUsers(data))
+                .catch(error=> console.error(error));
+        }
+
+
+        function showUsers(users){
+            var usersdiv = document.getElementById('users_list');
+            usersdiv.innerHTML = ''
+
+            var list = document.createElement('ul');
+            users.forEach(function (user){
+                var userli = document.createElement('li');
+                userli.innerHTML = '<strong>' + user.name + ' ' + user.surname + '</strong> - Email: ' + user.email;
+                list.appendChild(userli);
+            });
+            users_list.appendChild(list);
+        }
+    </script>
+</body>
+</html>
